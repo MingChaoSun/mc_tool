@@ -3,8 +3,7 @@ import time
 
 import numpy as np
 
-from PIL import Image,ImageDraw
-import matplotlib.pyplot as plt
+
 
 #dir:
 #
@@ -125,21 +124,21 @@ def readfile(file_path,split = ",",firstline = 0,withhead = False,head = "defaul
 
 			if head == "default":
 
-				headlist.append("line_num")
-
 				for h in range(len(line_f_s)):
 
 					headlist.append("col_" + str(h))
 
-			elif head == "firstline":
-
 				headlist.append("line_num")
+
+			elif head == "firstline":
 
 				firstline = firstline + 1
 
 				for h in line_f_s:
 
 					headlist.append(str(h))
+
+				headlist.append("line_num")
 
 			elif type(head) is list:
 
@@ -149,7 +148,7 @@ def readfile(file_path,split = ",",firstline = 0,withhead = False,head = "defaul
 
 				for h in head:
 
-					headlist[h[1] + 1] = h[0]
+					headlist[h[1]] = h[0]
 
 				headlist.append("line_num")
 
@@ -163,7 +162,7 @@ def readfile(file_path,split = ",",firstline = 0,withhead = False,head = "defaul
 
 					data[h] = []
 
-
+			print headlist
 
 			#read file
 			for line in lines:
@@ -180,7 +179,7 @@ def readfile(file_path,split = ",",firstline = 0,withhead = False,head = "defaul
 
 						elif h != "col_$_discard":
 
-							data[h].append(line_s[k-1])
+							data[h].append(line_s[k])
 
 				index = index + 1
 
@@ -227,6 +226,11 @@ def tofile(file_path,data,split = ",",firstline = 0,withhead = False):
 
 			f.writelines("\n")
 
+#def sort():
+
+	
+from PIL import Image,ImageDraw
+import matplotlib.pyplot as plt
 
 def PILImage(file_img):
 
